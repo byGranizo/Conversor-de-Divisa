@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Conversor de Divisa</string>
+
+    <string name="hintDivisa1">Introduce el valor a convertir</string>
+    <string name="textConvertir">Convertir</string>
+    <string name="textLimpiar">Limpiar</string>
+</resources>
