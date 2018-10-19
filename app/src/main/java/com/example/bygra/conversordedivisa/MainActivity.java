@@ -1,5 +1,6 @@
 package com.example.bygra.conversordedivisa;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -46,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //Convierte la divisa cuando se pulse el boton "Convertir"
-    public void conversion (View view){
+    public void conversion(View view){
         try{
             String stDivisa1 = etDivisa1.getText().toString();
             double divisa1 = Double.parseDouble(stDivisa1);
@@ -65,8 +66,18 @@ public class MainActivity extends AppCompatActivity {
 
 
     //Eliminara los valores que tenga el formulario al pulsar el boton "Limpiar"
-    public void limpiarFormulario (View view){
+    public void limpiarFormulario(View view){
         etDivisa1.setText("");
         tvDivisa2.setText("");
+    }
+
+    //Cambiara al activity de la edicion de las tasas y pasara como parametro el array predeterminado de tasas
+    public void goToEdTasas(View view){
+        Intent editorTasas = new Intent(this, EditorDivisa.class);
+        startActivity(editorTasas);
+    }
+
+    public void actualizarTasas (View view){
+
     }
 }

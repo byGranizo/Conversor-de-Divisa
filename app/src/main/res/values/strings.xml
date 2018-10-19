@@ -4,4 +4,9 @@
     <string name="hintDivisa1">Introduce el valor a convertir</string>
     <string name="textConvertir">Convertir</string>
     <string name="textLimpiar">Limpiar</string>
+    <string name="textEditarTasa">Editar tasas manualmente</string>
+    <string name="textSincronizarTasa">Sincronizar tasa online</string>
+
+    <string name="textGuardar">Guardar</string>
+    <string name="textVolver">Volver</string>
 </resources>

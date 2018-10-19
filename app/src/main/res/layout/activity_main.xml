@@ -70,4 +70,28 @@
         app:layout_constraintStart_toEndOf="@+id/btConvertir"
         app:layout_constraintTop_toBottomOf="@+id/txtDivisa2" />
 
+    <ImageButton
+        android:id="@+id/ibtSincronizar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="68dp"
+        android:contentDescription="@string/textSincronizarTasa"
+        android:onClick="actualizarTasas"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btConvertir"
+        app:srcCompat="@mipmap/ic_sync" />
+
+    <Button
+        android:id="@+id/btEditarTasa"
+        android:layout_width="129dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="80dp"
+        android:onClick="goToEdTasas"
+        android:text="@string/textEditarTasa"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/ibtSincronizar"
+        app:layout_constraintTop_toBottomOf="@+id/btLimpiar" />
+
 </android.support.constraint.ConstraintLayout>
