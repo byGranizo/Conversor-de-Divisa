@@ -1,8 +1,6 @@
 package com.example.bygra.conversordedivisa;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -29,8 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText etDivisa1;
     private TextView tvDivisa2;
     private Spinner spEntrada, spSalida;
-    private final int cantidadTasas=32;
-    private double[]valoresConversion = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+    private double[]valoresConversion = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,18 +43,12 @@ public class MainActivity extends AppCompatActivity {
         spSalida = findViewById(R.id.spDivisa2);
 
         String[] stSeleccionDivisa = {"EUR","USD","JPY","BGN","CZK","DKK","GBP","HUL","PLN","RON","SEK",
-                                     "CHF","ISK","NOK","HRK","RUB","TRY","AUD","BRL","CAD","CNY","HKD",
-                                     "IDR","ILS","INR","KRW","MXN","MYR","NZD","PHP","SGD","THB","ZAR"};
+                "CHF","ISK","NOK","HRK","RUB","TRY","AUD","BRL","CAD","CNY","HKD",
+                "IDR","ILS","INR","KRW","MXN","MYR","NZD","PHP","SGD","THB","ZAR"};
         ArrayAdapter <String> seleccionDivisa = new ArrayAdapter <String>(this, R.layout.spinner_item_divisas, stSeleccionDivisa);
 
         spEntrada.setAdapter(seleccionDivisa);
         spSalida.setAdapter(seleccionDivisa);
-
-        //Recuperacion de las tasas de la memoria
-        SharedPreferences datos = getSharedPreferences("tasas"Context.MODE_PRIVATE);
-        for(int i=0; i<cantidadTasas; i++){
-            valoresConversion[i] = Double.parseDouble(datos.getString(Integer.toString(i), ""));
-        }
 
     }
 
@@ -129,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
 
             //Interpretacion del XML
             NodeList nodeList = doc.getElementsByTagName("Cube");
-            for(int i=0; i<nodeList.getLength(); i++){
+            for(int i = 0; i < nodeList.getLength(); i++){
 
                 Node node = nodeList.item(i);
 
@@ -138,22 +129,13 @@ public class MainActivity extends AppCompatActivity {
                 valoresConversion[i] = Double.parseDouble(element.getAttribute("rate"));
             }
 
+            Toast.makeText(this,"Sincronizacion finalizada",Toast.LENGTH_SHORT).show();
+
         } catch (Exception e){
-            Toast.makeText(this,"Error",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Error al sincronizar",Toast.LENGTH_SHORT).show();
+
+
+
         }
-
-        //Guardado en memoria
-        Toast.makeText(this,"Guardando",Toast.LENGTH_SHORT).show();
-
-        SharedPreferences datos = getSharedPreferences("tasas"Context.MODE_PRIVATE);
-        SharedPreferences.Editor obj_editor = datos.edit();
-        for(int i=0; i<cantidadTasas;i++){
-            obj_editor.putString(Integer.toString(i),Double.toString(valoresConversion[i]));
-        }
-        obj_editor.commit();
-
-        Toast.makeText(this,"Finalizado",Toast.LENGTH_SHORT).show();
-
-
     }
 }
