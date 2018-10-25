@@ -11,6 +11,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity {
@@ -18,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText etDivisa1;
     private TextView tvDivisa2;
     private Spinner spEntrada, spSalida;
-    private double[]valoresConversion = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+    private ArrayList<Double> valoresConversion = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,11 +70,11 @@ public class MainActivity extends AppCompatActivity {
         if(origen == destino){
             tasa = 1;
         } else if(origen == 0){
-            tasa = valoresConversion[destino-1];
+            tasa = valoresConversion.get(destino-1);
         } else if(destino == 0){
-            tasa = 1/valoresConversion[origen-1];
+            tasa = 1/valoresConversion.get(origen-1);
         } else {
-            tasa = (1/valoresConversion[origen-1])*valoresConversion[destino-1];
+            tasa = (1/valoresConversion.get(origen-1))*valoresConversion.get(destino-1);
         }
 
         return tasa;
@@ -94,15 +95,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void actualizarTasas (View view){
 
-        BCEConection conexion = new BCEConection();
-        conexion.execute();
-        try {
-            valoresConversion = conexion.get();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
 
     }
 }

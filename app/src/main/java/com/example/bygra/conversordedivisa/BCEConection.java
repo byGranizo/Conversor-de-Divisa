@@ -11,13 +11,14 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
 import java.net.URL;
+import java.util.ArrayList;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 
-public class BCEConection extends AsyncTask<String, String, double[]> {
-    private double[]valoresConversion = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+public class BCEConection extends AsyncTask<String, String, ArrayList<Double>> {
+    private ArrayList<Double> valoresConversion = new ArrayList<>();;
 
     @Override
     protected void onPreExecute() {
@@ -25,7 +26,7 @@ public class BCEConection extends AsyncTask<String, String, double[]> {
     }
 
     @Override
-    protected double[] doInBackground(String... strings) {
+    protected ArrayList<Double> doInBackground(String... strings) {
         publishProgress();
         //Parseo XML
         try {
@@ -48,7 +49,7 @@ public class BCEConection extends AsyncTask<String, String, double[]> {
 
                 Element element = (Element)node;
 
-                valoresConversion[i] = Double.parseDouble(element.getAttribute("rate"));
+                valoresConversion.add(Double.parseDouble(element.getAttribute("rate")));
             }
 
 
@@ -68,7 +69,7 @@ public class BCEConection extends AsyncTask<String, String, double[]> {
     }
 
     @Override
-    protected void onPostExecute(double[] doubles) {
+    protected void onPostExecute(ArrayList<Double> doubles) {
         super.onPostExecute(doubles);
     }
 }
