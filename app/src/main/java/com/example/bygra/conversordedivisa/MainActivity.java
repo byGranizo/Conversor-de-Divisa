@@ -94,7 +94,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void actualizarTasas (View view){
-
+        String url = "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml";
+        BCEExchangeSync conexion = new BCEExchangeSync();
+        conexion.execute(url);
+        try {
+            valoresConversion = conexion.get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
 
     }
