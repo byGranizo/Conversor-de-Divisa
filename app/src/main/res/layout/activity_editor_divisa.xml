@@ -7,31 +7,35 @@
     tools:context=".EditorDivisa">
 
     <Button
-        android:id="@+id/btGuardar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:onClick="guardarCambio"
-        android:text="@string/textGuardar"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="415dp" />
-
-    <Button
         android:id="@+id/btVolver"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
+        android:layout_marginTop="12dp"
         android:onClick="volverAMain"
         android:text="@string/textVolver"
-        app:layout_constraintStart_toEndOf="@+id/btGuardar"
-        tools:layout_editor_absoluteY="415dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lvConversion" />
 
     <ListView
-        android:id="@+id/lvTasas"
+        android:id="@+id/lvConversion"
         android:layout_width="368dp"
-        android:layout_height="362dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_height="399dp"
+        android:layout_marginTop="44dp"
+        android:entries="@array/divisasEdicion"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/tituloEdicion" />
+
 </android.support.constraint.ConstraintLayout>

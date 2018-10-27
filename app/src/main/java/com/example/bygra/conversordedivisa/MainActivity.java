@@ -34,14 +34,6 @@ public class MainActivity extends AppCompatActivity {
         spEntrada = findViewById(R.id.spDivisa1);
         spSalida = findViewById(R.id.spDivisa2);
 
-        String[] stSeleccionDivisa = {"EUR","USD","JPY","BGN","CZK","DKK","GBP","HUL","PLN","RON","SEK",
-                "CHF","ISK","NOK","HRK","RUB","TRY","AUD","BRL","CAD","CNY","HKD",
-                "IDR","ILS","INR","KRW","MXN","MYR","NZD","PHP","SGD","THB","ZAR"};
-        ArrayAdapter <String> seleccionDivisa = new ArrayAdapter <String>(this, R.layout.spinner_item_divisas, stSeleccionDivisa);
-
-        spEntrada.setAdapter(seleccionDivisa);
-        spSalida.setAdapter(seleccionDivisa);
-
     }
 
     //Convierte la divisa cuando se pulse el boton "Convertir"
@@ -90,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
     //Cambiara al activity de la edicion de las tasas y pasara como parametro el array predeterminado de tasas
     public void goToEdTasas(View view){
         Intent editorTasas = new Intent(this, EditorDivisa.class);
+        editorTasas.putExtra("tasas", valoresConversion);
         startActivity(editorTasas);
     }
 
@@ -97,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
         String url = "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml";
         BCEExchangeSync conexion = new BCEExchangeSync();
         conexion.execute(url);
+
         try {
             valoresConversion = conexion.get();
         } catch (ExecutionException e) {

@@ -7,6 +7,9 @@
     <string name="textEditarTasa">Editar tasas manualmente</string>
     <string name="textSincronizarTasa">Sincronizar tasa online</string>
 
+    <string name="tituloEdicion">Edicion de Euros a otra divisa</string>
     <string name="textGuardar">Guardar</string>
     <string name="textVolver">Volver</string>
+
+    <string name="textSaver">Introduce el valor de conversion de euros a la divisa que has elegido</string>
 </resources>
