@@ -30,13 +30,14 @@ public class EditorSaver extends AppCompatActivity {
         btGuardar = findViewById(R.id.btGuardar);
         btVolver = findViewById(R.id.btVolver);
 
+        //Extraccion de las variables guardadas en el intent
         valoresConversion = (ArrayList<Double>) getIntent().getSerializableExtra("tasas");
         divisa = getIntent().getExtras().getInt("divisa");
 
         etValor.setText(valoresConversion.get(divisa).toString());
     }
 
-    //Guarda el valor escrito en el EditText en la posicion adecuada del ArrayList
+    //Guarda el valor escrito en el EditText en la posicion adecuada del ArrayList y cierra el activity
     protected void guardar(View view){
         if(etValor.getText()==null){
             Toast.makeText(this,"Introduce un valor para poder guardar",Toast.LENGTH_SHORT).show();
@@ -54,7 +55,7 @@ public class EditorSaver extends AppCompatActivity {
             finish();
         }
     }
-
+    //Si el usuario quiere volver sin haber modificado el valor se cierra el activity
     protected void volver(View view){
         finish();
     }

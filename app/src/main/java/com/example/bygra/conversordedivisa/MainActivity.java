@@ -89,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
         startActivityForResult(editorTasas,0);
     }
 
+    //Al volver del activity EditorDivisa se comprueba si el intent ha sido correcto actualiza el ArrayList
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 0) {
             if (resultCode == Activity.RESULT_OK) {
@@ -97,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //Se accede a un segundo hilo, se conectara a la web del BCE y parseara el xml añadiendolo al ArrayList, de momento no funciona
     public void actualizarTasas (View view){
         String url = "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml";
         BCEExchangeSync conexion = new BCEExchangeSync();
@@ -109,10 +111,9 @@ public class MainActivity extends AppCompatActivity {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-
     }
 
+    //Como el parseo da error, esto rellenara el ArrayList con los valores que tiene el xml de forma manual
     public ArrayList<Double> rellena (ArrayList<Double> a){
         a.add(1.1345);
         a.add(127.13);

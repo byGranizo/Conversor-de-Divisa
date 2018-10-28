@@ -33,37 +33,39 @@ public class EditorDivisa extends AppCompatActivity {
         btVolver = findViewById(R.id.btVolver);
         lvConversion = findViewById(R.id.lvConversion);
 
-
+        //Extraccion del ArrayList guardado en el intent
         valoresConversion = (ArrayList<Double>) getIntent().getSerializableExtra("tasas");
 
+        //Se ejecuta al hacer click en una posicion del ListView
         lvConversion.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 goToSaver(view, position);
-
-
             }
         });
 
     }
 
+    //Al cerrar el activity EditorSaver comprueba si se ha cerrado guardando o sin guardar, en el primer caso actualizar el ArrayList y lo notificara al usuario por medio de un Toast
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode==1){
             if(resultCode== Activity.RESULT_OK){
                 valoresConversion = (ArrayList<Double>) data.getSerializableExtra("arrayEditada");
+                Toast.makeText(this,"Valor editado con exito",Toast.LENGTH_SHORT).show();
             }
         }
     }
 
+    //Añade al intent el ArrayList y la divisa seleccionada, despues abre el nuevo activity
     public void goToSaver(View view, int divisa){
         Intent saver = new Intent(this, EditorSaver.class);
         saver.putExtra("divisa",divisa);
         saver.putExtra("tasas", valoresConversion);
         startActivityForResult(saver,1);
-        Toast.makeText(this,"Valor editado con exito",Toast.LENGTH_SHORT).show();
     }
 
+    //Guarda el ArrayList ya editado y sale del activity
     public void volverAMain(View view){
         Intent resultado = new Intent();
         resultado.putExtra("valoresEditados",valoresConversion);
