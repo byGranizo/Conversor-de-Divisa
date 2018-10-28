@@ -1,6 +1,8 @@
 package com.example.bygra.conversordedivisa;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
@@ -45,15 +47,27 @@ public class EditorDivisa extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode==1){
+            if(resultCode== Activity.RESULT_OK){
+                valoresConversion = (ArrayList<Double>) data.getSerializableExtra("arrayEditada");
+            }
+        }
+    }
+
     public void goToSaver(View view, int divisa){
         Intent saver = new Intent(this, EditorSaver.class);
         saver.putExtra("divisa",divisa);
         saver.putExtra("tasas", valoresConversion);
-        startActivity(saver);
+        startActivityForResult(saver,1);
         Toast.makeText(this,"Valor editado con exito",Toast.LENGTH_SHORT).show();
     }
 
     public void volverAMain(View view){
-
+        Intent resultado = new Intent();
+        resultado.putExtra("valoresEditados",valoresConversion);
+        setResult(Activity.RESULT_OK,resultado);
+        finish();
     }
 }
