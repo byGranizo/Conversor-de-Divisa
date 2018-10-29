@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -38,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
         valoresConversion = rellena(valoresConversion);
 
     }
+
+
 
     //Convierte la divisa cuando se pulse el boton "Convertir"
     public void conversion(View view){
@@ -106,6 +107,7 @@ public class MainActivity extends AppCompatActivity {
 
         try {
             valoresConversion = conexion.get();
+            Toast.makeText(this,"Sincronizacion realizada con exito",Toast.LENGTH_SHORT).show();
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
