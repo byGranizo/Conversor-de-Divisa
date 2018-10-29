@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    //Se accede a un segundo hilo, se conectara a la web del BCE y parseara el xml añadiendolo al ArrayList, de momento no funciona
+    //Se accede a un segundo hilo, se conectara a la web del BCE y parseara el xml añadiendolo al ArrayList
     public void actualizarTasas (View view){
         String url = "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml";
         BCEExchangeSync conexion = new BCEExchangeSync();

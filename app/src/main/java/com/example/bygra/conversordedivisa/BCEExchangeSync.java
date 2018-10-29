@@ -38,8 +38,10 @@ public class BCEExchangeSync extends AsyncTask<String, Void, ArrayList<Double>> 
         for (int i = 0; i < nl.getLength(); i++){
             Node node = nl.item(i);
             Element element = (Element)node;
-            vc.add(Double.parseDouble(element.getAttribute("time")));
-            Log.d("eror",Integer.toString(i)+"5");
+
+           if(!"".equals(element.getAttribute("currency")) && !"".equals(element.getAttribute("rate"))){
+                vc.add(Double.parseDouble(element.getAttribute("rate")));
+           }
         }
 
         return vc;
@@ -66,9 +68,9 @@ public class BCEExchangeSync extends AsyncTask<String, Void, ArrayList<Double>> 
             is = url.openStream();
 
             dbf = DocumentBuilderFactory.newInstance();
-            dbf.setNamespaceAware(true);
             db = dbf.newDocumentBuilder();
             doc = db.parse(is);
+            doc.getDocumentElement().normalize();
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
