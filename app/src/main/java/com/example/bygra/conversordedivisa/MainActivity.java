@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
         spSalida = findViewById(R.id.spDivisa2);
 
         valoresConversion = rellena(valoresConversion);
-
     }
 
 
@@ -115,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    //Como el parseo da error, esto rellenara el ArrayList con los valores que tiene el xml de forma manual
+    //Rellena el ArrayList con los valores aproximados a los actuales como una forma de inicializarlo
     public ArrayList<Double> rellena (ArrayList<Double> a){
         a.add(1.1345);
         a.add(127.13);
